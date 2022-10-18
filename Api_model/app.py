@@ -6,6 +6,7 @@ warnings.filterwarnings("ignore")
 from graph import distplots,scatterplots
 from flask_cors import CORS
 from flask  import Flask,send_file
+from flask.helpers import send_from_directory
 
 
 
@@ -32,6 +33,10 @@ def scatterplot():
     bytes_obj = scatterplots()
     return send_file(bytes_obj,download_name='plot.png',mimetype='image/png')
     
+
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder,'index.html')
    
 
 
